@@ -40,6 +40,4 @@ end architecture dataflow;
 2. Link to your public EDA Playground example:
 
    [https://www.edaplayground.com/...](https://www.edaplayground.com/...)
-=======
-## Assigment_1
->>>>>>> d7a4d042cf4d3377d5319f95cbc56bb9f4cdddba
+
