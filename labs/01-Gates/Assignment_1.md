@@ -12,8 +12,8 @@
 architecture dataflow of demorgan is
 begin
     forg_o  <= (not b_i and a_i) or (not c_i and not b_i);
-    fnand_o <= ((a_i nand not b_i) nand (not b_i nand not c_i));
-    fnor_o  <= (b_i nor (a_i nor not c_i));
+    fnand_o <= ((a_i nand (b_i nand b_i)) nand ((b_i nand b_i) nand (c_i nand c_i)));
+    fnor_o  <= (b_i nor (a_i nor (c_i nor c_i)));
 end architecture dataflow;
 ```
 
