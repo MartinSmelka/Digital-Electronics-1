@@ -1,26 +1,17 @@
-# Lab 2: Martin Šmelka, 227234
+# Lab 3: Martin Šmelka. 227234
 
-### 2-bit comparator
+### Two-bit wide 4-to-1 multiplexer
 
-1. Karnaugh maps for other two functions:
+1. Listing of VHDL architecture from source file `mux_2bit_4to1.vhd`. Always use syntax highlighting, meaningful comments, and follow VHDL guidelines:
 
-   Greater than:
+```vhdl
+architecture Behavioral of mux_2bit_4to1 is
+begin
+    -- WRITE YOUR CODE HERE
+end architecture Behavioral;
+```
 
-   ![K-maps](images/kmap_empty.png)
-
-   Less than:
-
-   ![K-maps](images/kmap_empty.png)
-
-2. Equations of simplified SoP (Sum of the Products) form of the "greater than" function and simplified PoS (Product of the Sums) form of the "less than" function.
-
-   ![Logic functions](labs/Images/EQUA.png)
-
-### 4-bit comparator
-
-1. Listing of VHDL stimulus process from testbench file (`testbench.vhd`) with at least one assert (use BCD codes of your student ID digits as input combinations). Always use syntax highlighting, meaningful comments, and follow VHDL guidelines:
-
-   Last two digits of my student ID: **xxxx??**
+2. Listing of VHDL stimulus process from testbench file (`tb_mux_2bit_4to1`) with asserts. Always use syntax highlighting, meaningful comments, and follow VHDL guidelines. Verify at least four random input combinations:
 
 ```vhdl
     p_stimulus : process
@@ -28,16 +19,7 @@
         -- Report a note at the beginning of stimulus process
         report "Stimulus process started" severity note;
 
-        -- First test case
-        s_b <= "0011"; -- Such as "0101" if ID = xxxx56
-        s_a <= "0100";        -- Such as "0110" if ID = xxxx56
-        wait for 100 ns;
-        -- Expected output
-        assert ((s_B_greater_A = '0') and
-                (s_B_equals_A  = '0') and
-                (s_B_less_A    = '1'))
-        -- If false, then report an error
-        report "Input combination 0011 to 0100" severity error;
+        -- WRITE YOUR TEST CASES HERE
 
         -- Report a note at the end of stimulus process
         report "Stimulus process finished" severity note;
@@ -45,10 +27,6 @@
     end process p_stimulus;
 ```
 
-2. Text console screenshot during your simulation, including reports.
+3. Screenshot with simulated time waveforms. Always display all inputs and outputs (display the inputs at the top of the image, the outputs below them) at the appropriate time scale!
 
-   ![your figure](https://github.com/MartinSmelka/Digital-Electronics-1/blob/cbdd67ae0c48962848aeb1401a872eb7e60831a4/labs/Images/Command_P.png)
-
-3. Link to your public EDA Playground example:
-
-   [https://www.edaplayground.com/...](https://www.edaplayground.com/x/kvdQ)
+   ![your figure]()
