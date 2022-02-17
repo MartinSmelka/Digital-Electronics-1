@@ -1,54 +1,67 @@
-# Lab 2: Martin Šmelka, 227234
+# Lab 8: Martin Šmelka, 227234
 
-### 2-bit comparator
 
-1. Karnaugh maps for other two functions:
+### Traffic light controller
 
-   Greater than:
+1. Figure of state diagram:
 
-   ![K-maps](images/kmap_empty.png)
+   ![your figure]()
 
-   Less than:
-
-   ![K-maps](images/kmap_empty.png)
-
-2. Equations of simplified SoP (Sum of the Products) form of the "greater than" function and simplified PoS (Product of the Sums) form of the "less than" function.
-
-   ![Logic functions](labs/Images/EQUA.png)
-
-### 4-bit comparator
-
-1. Listing of VHDL stimulus process from testbench file (`testbench.vhd`) with at least one assert (use BCD codes of your student ID digits as input combinations). Always use syntax highlighting, meaningful comments, and follow VHDL guidelines:
-
-   Last two digits of my student ID: **xxxx??**
+2. Listing of VHDL code of the completed process `p_traffic_fsm`. Always use syntax highlighting, meaningful comments, and follow VHDL guidelines:
 
 ```vhdl
-    p_stimulus : process
+    --------------------------------------------------------
+    -- p_traffic_fsm:
+    -- The sequential process with synchronous reset and 
+    -- clock_enable entirely controls the s_state signal by 
+    -- CASE statement.
+    --------------------------------------------------------
+    p_traffic_fsm : process(clk)
     begin
-        -- Report a note at the beginning of stimulus process
-        report "Stimulus process started" severity note;
+        if rising_edge(clk) then
+            if (reset = '1') then       -- Synchronous reset
+                s_state <= STOP1 ;      -- Set initial state
+                s_cnt   <= c_ZERO;      -- Clear all bits
 
-        -- First test case
-        s_b <= "0011"; -- Such as "0101" if ID = xxxx56
-        s_a <= "0100";        -- Such as "0110" if ID = xxxx56
-        wait for 100 ns;
-        -- Expected output
-        assert ((s_B_greater_A = '0') and
-                (s_B_equals_A  = '0') and
-                (s_B_less_A    = '1'))
-        -- If false, then report an error
-        report "Input combination 0011 to 0100" severity error;
+            elsif (s_en = '1') then
+                -- Every 250 ms, CASE checks the value of the s_state 
+                -- variable and changes to the next state according 
+                -- to the delay value.
+                case s_state is
 
-        -- Report a note at the end of stimulus process
-        report "Stimulus process finished" severity note;
-        wait;
-    end process p_stimulus;
+                    -- If the current state is STOP1, then wait 1 sec
+                    -- and move to the next GO_WAIT state.
+                    when STOP1 =>
+                        -- Count up to c_DELAY_1SEC
+                        if (s_cnt < c_DELAY_1SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            -- Move to the next state
+                            s_state <= WEST_GO;
+                            -- Reset local counter value
+                            s_cnt   <= c_ZERO;
+                        end if;
+
+                    when WEST_GO =>
+
+                        -- WRITE YOUR CODE HERE
+
+                    -- It is a good programming practice to use the 
+                    -- OTHERS clause, even if all CASE choices have 
+                    -- been made. 
+                    when others =>
+                        s_state <= STOP1;
+
+                end case;
+            end if; -- Synchronous reset
+        end if; -- Rising edge
+    end process p_traffic_fsm;
 ```
 
-2. Text console screenshot during your simulation, including reports.
+3. Screenshot with simulated time waveforms. The full functionality of the entity must be verified. Always display all inputs and outputs (display the inputs at the top of the image, the outputs below them) at the appropriate time scale!
 
-   ![your figure](https://github.com/MartinSmelka/Digital-Electronics-1/blob/cbdd67ae0c48962848aeb1401a872eb7e60831a4/labs/Images/Command_P.png)
+   ![your figure]()
 
-3. Link to your public EDA Playground example:
+### Smart controller
 
-   [https://www.edaplayground.com/...](https://www.edaplayground.com/x/kvdQ)
+1. State table for smart controller using two sensors and two traffic lights in three colors.
