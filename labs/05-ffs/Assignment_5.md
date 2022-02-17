@@ -1,54 +1,37 @@
-# Lab 2: Martin Šmelka, 227234
+# Lab 5: Martin Šmelka, 227234
 
-### 2-bit comparator
+### Flip-flops
 
-1. Karnaugh maps for other two functions:
-
-   Greater than:
-
-   ![K-maps](images/kmap_empty.png)
-
-   Less than:
-
-   ![K-maps](images/kmap_empty.png)
-
-2. Equations of simplified SoP (Sum of the Products) form of the "greater than" function and simplified PoS (Product of the Sums) form of the "less than" function.
-
-   ![Logic functions](labs/Images/EQUA.png)
-
-### 4-bit comparator
-
-1. Listing of VHDL stimulus process from testbench file (`testbench.vhd`) with at least one assert (use BCD codes of your student ID digits as input combinations). Always use syntax highlighting, meaningful comments, and follow VHDL guidelines:
-
-   Last two digits of my student ID: **xxxx??**
+1. Listing of VHDL architecture for T-type flip-flop. Always use syntax highlighting, meaningful comments, and follow VHDL guidelines:
 
 ```vhdl
-    p_stimulus : process
+architecture Behavioral of t_ff_rst is
+    signal s_q : std_logic;
+begin
+    --------------------------------------------------------
+    -- p_t_ff_rst:
+    -- T type flip-flop with a high-active sync reset,
+    -- rising-edge clk.
+    -- q(n+1) = t./q(n) + /t.q(n)
+    --------------------------------------------------------
+    p_t_ff_rst : process(clk)
     begin
-        -- Report a note at the beginning of stimulus process
-        report "Stimulus process started" severity note;
 
-        -- First test case
-        s_b <= "0011"; -- Such as "0101" if ID = xxxx56
-        s_a <= "0100";        -- Such as "0110" if ID = xxxx56
-        wait for 100 ns;
-        -- Expected output
-        assert ((s_B_greater_A = '0') and
-                (s_B_equals_A  = '0') and
-                (s_B_less_A    = '1'))
-        -- If false, then report an error
-        report "Input combination 0011 to 0100" severity error;
+        -- WRITE YOUR CODE HERE
 
-        -- Report a note at the end of stimulus process
-        report "Stimulus process finished" severity note;
-        wait;
-    end process p_stimulus;
+    end process p_t_ff_rst;
+
+    q     <= s_q;
+    q_bar <= not s_q;
+end architecture Behavioral;
 ```
 
-2. Text console screenshot during your simulation, including reports.
+2. Screenshot with simulated time waveforms. Try to simulate both flip-flops in a single testbench with a maximum duration of 200 ns, including reset. Always display all inputs and outputs (display the inputs at the top of the image, the outputs below them) at the appropriate time scale!
 
-   ![your figure](https://github.com/MartinSmelka/Digital-Electronics-1/blob/cbdd67ae0c48962848aeb1401a872eb7e60831a4/labs/Images/Command_P.png)
+   ![your figure]()
 
-3. Link to your public EDA Playground example:
+### Shift register
 
-   [https://www.edaplayground.com/...](https://www.edaplayground.com/x/kvdQ)
+1. Image of the shift register block schematic. The image can be drawn on a computer or by hand. Always name all inputs, outputs, components and internal signals!
+
+   ![your figure]()
