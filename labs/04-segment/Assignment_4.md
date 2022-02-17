@@ -1,54 +1,49 @@
-# Lab 2: Martin Šmelka, 227234
+# Lab 4: Martin Šmelka, 227234
 
-### 2-bit comparator
+### Seven-segment display decoder
 
-1. Karnaugh maps for other two functions:
-
-   Greater than:
-
-   ![K-maps](images/kmap_empty.png)
-
-   Less than:
-
-   ![K-maps](images/kmap_empty.png)
-
-2. Equations of simplified SoP (Sum of the Products) form of the "greater than" function and simplified PoS (Product of the Sums) form of the "less than" function.
-
-   ![Logic functions](labs/Images/EQUA.png)
-
-### 4-bit comparator
-
-1. Listing of VHDL stimulus process from testbench file (`testbench.vhd`) with at least one assert (use BCD codes of your student ID digits as input combinations). Always use syntax highlighting, meaningful comments, and follow VHDL guidelines:
-
-   Last two digits of my student ID: **xxxx??**
+1. Listing of VHDL stimulus process from testbench file (`tb_hex_7seg.vhd`) with asserts. Verify all input combinations. Always use syntax highlighting, meaningful comments, and follow VHDL guidelines:
 
 ```vhdl
     p_stimulus : process
     begin
-        -- Report a note at the beginning of stimulus process
         report "Stimulus process started" severity note;
 
         -- First test case
-        s_b <= "0011"; -- Such as "0101" if ID = xxxx56
-        s_a <= "0100";        -- Such as "0110" if ID = xxxx56
-        wait for 100 ns;
-        -- Expected output
-        assert ((s_B_greater_A = '0') and
-                (s_B_equals_A  = '0') and
-                (s_B_less_A    = '1'))
-        -- If false, then report an error
-        report "Input combination 0011 to 0100" severity error;
+        s_hex <= "0000"; wait for 50 ns;
+        assert (s_seg = "0000001")
+        report "Input combination 0000 FAILED" severity error;
 
-        -- Report a note at the end of stimulus process
+
+        -- WRITE OTHER TEST CASES HERE
+
+
         report "Stimulus process finished" severity note;
         wait;
     end process p_stimulus;
 ```
 
-2. Text console screenshot during your simulation, including reports.
+2. Screenshot with simulated time waveforms. Always display all inputs and outputs (display the inputs at the top of the image, the outputs below them) at the appropriate time scale!
 
-   ![your figure](https://github.com/MartinSmelka/Digital-Electronics-1/blob/cbdd67ae0c48962848aeb1401a872eb7e60831a4/labs/Images/Command_P.png)
+   ![your figure]()
 
-3. Link to your public EDA Playground example:
+### LED(7:4) indicators
 
-   [https://www.edaplayground.com/...](https://www.edaplayground.com/x/kvdQ)
+1. Listing of LEDs(7:4) part of VHDL architecture from source file `top.vhd`. Try to write logic functions as simple as possible. Always use syntax highlighting, meaningful comments, and follow VHDL guidelines:
+
+```vhdl
+    --------------------------------------------------------------------
+    -- Experiments on your own: LED(7:4) indicators
+
+    -- Turn LED(4) on if input value is equal to 0, ie "0000"
+    -- WRITE YOUR CODE HERE
+    
+    -- Turn LED(5) on if input value is greater than "1001", ie 10, 11, 12, ...
+    -- WRITE YOUR CODE HERE
+    
+    -- Turn LED(6) on if input value is odd, ie 1, 3, 5, ...
+    -- WRITE YOUR CODE HERE
+    
+    -- Turn LED(7) on if input value is a power of two, ie 1, 2, 4, or 8
+    -- WRITE YOUR CODE HERE
+```
