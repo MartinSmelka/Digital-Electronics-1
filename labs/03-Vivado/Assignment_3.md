@@ -1,4 +1,4 @@
-# Lab 3: Martin Šmelka. 227234
+# Lab 3: Martin Šmelka, 227234
 
 ### Two-bit wide 4-to-1 multiplexer
 
