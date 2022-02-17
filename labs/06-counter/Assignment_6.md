@@ -1,54 +1,38 @@
-# Lab 2: Martin Šmelka, 227234
+# Lab 6: Martin Šmelka, 227234
 
-### 2-bit comparator
+### Bidirectional counter
 
-1. Karnaugh maps for other two functions:
-
-   Greater than:
-
-   ![K-maps](images/kmap_empty.png)
-
-   Less than:
-
-   ![K-maps](images/kmap_empty.png)
-
-2. Equations of simplified SoP (Sum of the Products) form of the "greater than" function and simplified PoS (Product of the Sums) form of the "less than" function.
-
-   ![Logic functions](labs/Images/EQUA.png)
-
-### 4-bit comparator
-
-1. Listing of VHDL stimulus process from testbench file (`testbench.vhd`) with at least one assert (use BCD codes of your student ID digits as input combinations). Always use syntax highlighting, meaningful comments, and follow VHDL guidelines:
-
-   Last two digits of my student ID: **xxxx??**
+1. Listing of VHDL code of the completed process `p_cnt_up_down`. Always use syntax highlighting, meaningful comments, and follow VHDL guidelines:
 
 ```vhdl
-    p_stimulus : process
+    --------------------------------------------------------
+    -- p_cnt_up_down:
+    -- Clocked process with synchronous reset which implements
+    -- n-bit up/down counter.
+    --------------------------------------------------------
+    p_cnt_up_down : process(clk)
     begin
-        -- Report a note at the beginning of stimulus process
-        report "Stimulus process started" severity note;
+        if rising_edge(clk) then
+        
+            if (reset = '1') then   -- Synchronous reset
+                s_cnt_local <= (others => '0'); -- Clear all bits
 
-        -- First test case
-        s_b <= "0011"; -- Such as "0101" if ID = xxxx56
-        s_a <= "0100";        -- Such as "0110" if ID = xxxx56
-        wait for 100 ns;
-        -- Expected output
-        assert ((s_B_greater_A = '0') and
-                (s_B_equals_A  = '0') and
-                (s_B_less_A    = '1'))
-        -- If false, then report an error
-        report "Input combination 0011 to 0100" severity error;
+            elsif (en_i = '1') then -- Test if counter is enabled
 
-        -- Report a note at the end of stimulus process
-        report "Stimulus process finished" severity note;
-        wait;
-    end process p_stimulus;
+                -- TEST COUNTER DIRECTION HERE
+
+                s_cnt_local <= s_cnt_local + 1;
+            end if;
+        end if;
+    end process p_cnt_up_down;
 ```
 
-2. Text console screenshot during your simulation, including reports.
+2. Screenshot with simulated time waveforms. Test reset as well. Always display all inputs and outputs (display the inputs at the top of the image, the outputs below them) at the appropriate time scale!
 
-   ![your figure](https://github.com/MartinSmelka/Digital-Electronics-1/blob/cbdd67ae0c48962848aeb1401a872eb7e60831a4/labs/Images/Command_P.png)
+   ![your figure]()
 
-3. Link to your public EDA Playground example:
+### Two counters
 
-   [https://www.edaplayground.com/...](https://www.edaplayground.com/x/kvdQ)
+1. Image of the top layer structure including both counters, ie a 4-bit bidirectional counter from *Part 4* and a 16-bit counter with a 10 ms time base from *Experiments on your own*. The image can be drawn on a computer or by hand. Always name all inputs, outputs, components and internal signals!
+
+   ![your figure]()
