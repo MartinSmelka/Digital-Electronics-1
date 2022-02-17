@@ -47,7 +47,7 @@
 
 2. Text console screenshot during your simulation, including reports.
 
-   ![your figure](labs/Images/Command_P.png)
+   ![your figure](https://github.com/MartinSmelka/Digital-Electronics-1/blob/cbdd67ae0c48962848aeb1401a872eb7e60831a4/labs/Images/Command_P.png)
 
 3. Link to your public EDA Playground example:
 
