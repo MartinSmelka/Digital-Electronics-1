@@ -1,4 +1,4 @@
-# Lab 1: Martin Šmelka, 227234
+Martin Šmelka, 227234
 # Lab 2: Combinational logic
 
 <!--
