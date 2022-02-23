@@ -14,7 +14,7 @@
 
 2. Equations of simplified SoP (Sum of the Products) form of the "greater than" function and simplified PoS (Product of the Sums) form of the "less than" function.
 
-   ![Logic functions](labs/Images/EQUA.png)
+   ![Logic functions](https://github.com/MartinSmelka/Digital-Electronics-1/blob/main/labs/Images/SOP.png?raw=true)
 
 ### 4-bit comparator
 
