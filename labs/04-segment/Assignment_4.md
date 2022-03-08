@@ -28,18 +28,19 @@
    ![your figure]()
 
 ### LED(7:4) indicators
+   ```vhdl
+   --------------------------------------------------------------------
+   -- Experiments on your own: LED(7:4) indicators
 
-1. Listing of LEDs(7:4) part of VHDL architecture from source file `top.vhd`. Try to write logic functions as simple as possible. Always use syntax highlighting, meaningful comments, and follow VHDL guidelines:
--- Experiments on your own: LED(7:4) indicators
+   -- Turn LED(4) on if input value is equal to 0, ie "0000"
+   -- LED(4) <= `0` when (hex_i = "0000") else "1"; 
 
--- Turn LED(4) on if input value is equal to 0, ie "0000"
--- LED(4) <= `0` when (hex_i = "0000") else "1"; 
+   -- Turn LED(5) on if input value is greater than "1001", ie 10, 11, 12, ...
+   -- LED(5) <= "0" when (hex_i > "1001") else "1";   
 
--- Turn LED(5) on if input value is greater than "1001", ie 10, 11, 12, ...
--- LED(5) <= "0" when (hex_i > "1001") else "1";   
+   -- Turn LED(6) on if input value is odd, ie 1, 3, 5, ...
+   -- LED(6) <= "0" when (hex_i(0) = '1') else "1"; 
 
--- Turn LED(6) on if input value is odd, ie 1, 3, 5, ...
--- LED(6) <= "0" when (hex_i(0) = '1') else "1"; 
-
--- Turn LED(7) on if input value is a power of two, ie 1, 2, 4, or 8
--- LED(7) <= "0" when (hex_i = "0001") or (hex_i = "0010") or (hex_i = "0100") or (hex_i = "1000")  else "1";
+   -- Turn LED(7) on if input value is a power of two, ie 1, 2, 4, or 8
+   -- LED(7) <= "0" when (hex_i = "0001") or (hex_i = "0010") or (hex_i = "0100") or (hex_i = "1000")  else "1";
+   ```
