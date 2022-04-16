@@ -1,0 +1,4 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "D:/Documents/227234/digital_clock_final/digital_clock_final.srcs/sources_1/new/digital_clock.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'digital_clock'
+INFO: [VRFC 10-3107] analyzing entity 'bin2hex'
+INFO: [VRFC 10-3107] analyzing entity 'clk_div'
