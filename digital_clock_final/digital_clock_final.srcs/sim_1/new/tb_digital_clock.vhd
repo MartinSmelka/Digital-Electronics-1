@@ -5,8 +5,6 @@ USE ieee.std_logic_1164.ALL;
 ENTITY tb_digital_clock IS
 END tb_digital_clock;
 ARCHITECTURE behavior OF tb_digital_clock IS 
-  -- Component Declaration for the Unit Under Test (UUT)
--- fpga4student.com FPGA projects, VHDL projects, Verilog projects
     COMPONENT digital_clock
     PORT(
          clk : IN  std_logic;
@@ -44,8 +42,6 @@ ARCHITECTURE behavior OF tb_digital_clock IS
    -- Clock period definitions
    constant clk_period : time := 10 ps;
 BEGIN
--- fpga4student.com FPGA projects, VHDL projects, Verilog projects
- -- Instantiate the Unit Under Test (UUT)
    uut: digital_clock PORT MAP (
           clk => clk,
           rst_n => rst_n,
@@ -62,7 +58,6 @@ BEGIN
           S_out1 => S_out1,
           S_out0 => S_out0
         );
-   -- Clock process definitions
    clk_process :process
    begin
  clk <= '0';
@@ -70,10 +65,8 @@ BEGIN
  clk <= '1';
  wait for clk_period/2;
    end process;
-   -- Stimulus process
    stim_proc: process
    begin 
-      -- hold reset state for 100 ns.
  rst_n <= '0';
  H_in1 <= "01";
  H_in0 <= x"0";
