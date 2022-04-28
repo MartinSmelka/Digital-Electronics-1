@@ -37,12 +37,8 @@ port (
  -- The most significant digit of the minute. Valid values are 0 to 9 ( Hexadecimal value on 7-segment LED)
  S_out1: out std_logic_vector(6 downto 0);
  -- The most significant digit of the minute. Valid values are 0 to 9 ( Hexadecimal value on 7-segment LED)
- S_out0: out std_logic_vector(6 downto 0);
+ S_out0: out std_logic_vector(6 downto 0)
  -- The most significant digit of the minute. Valid values are 0 to 9 ( Hexadecimal value on 7-segment LED)
- seg_o   : out std_logic_vector(6 downto 0);
- -- Cathode values for individual segments
- dig_o   : out std_logic_vector(6 downto 0)
-  -- Common anode signals to individual displays 
  );
 end digital_clock;
 architecture Behavioral of digital_clock is
@@ -71,8 +67,8 @@ begin
 -- create 1-s clock --|
 create_1s_clock: clk_div port map (clk => clk, clk_1s => clk_1s); 
 -- clock operation ---|
-process(clk_1s,rst_n) begin 
-  if(rst_n = '0') then 
+process(clk_1s) begin 
+  if(rst_n = '1') then 
  counter_hour <= to_integer(unsigned(H_in1))*10 + to_integer(unsigned(H_in0));
  counter_minute <= to_integer(unsigned(M_in1))*10 + to_integer(unsigned(M_in0));
  counter_second <= to_integer(unsigned(S_in1))*10 + to_integer(unsigned(S_in0));
@@ -200,8 +196,8 @@ begin
  begin
   if(rising_edge(clk)) then
    counter <= counter + x"0000001";
-   if(counter>=x"2FAF080") then -- for running on FPGA -- comment when running simulation
-   --if(counter>=x"0000001") then -- for running simulation -- comment when running on FPGA
+   if(counter>=x"2FAF080") then -- for running on Board -- comment when running simulation
+   --if(counter>=x"0000001") then -- for running simulation -- comment when running on Board
     counter <= x"0000000";
    end if;
   end if;
@@ -209,71 +205,4 @@ begin
  clk_1s <= '0' when counter < x"0000001" else '1';
 end Behavioral;
 -- Multiplexer to drive displays
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
 
-entity Multiplexer is
-    Port ( clk : in STD_LOGIC;
-           rst_n : in STD_LOGIC;
-           H_out1 : in STD_LOGIC_VECTOR (0 to 7);
-           H_out0 : in STD_LOGIC_VECTOR (0 to 7);
-           M_out1 : in STD_LOGIC_VECTOR (0 to 7);
-           M_out0 : in STD_LOGIC_VECTOR (0 to 7);
-           S_out1 : in STD_LOGIC_VECTOR (0 to 7);
-           S_out0 : in STD_LOGIC_VECTOR (0 to 7);
-           seg_o : out STD_LOGIC_VECTOR (0 to 7);
-           dig_o : out STD_LOGIC_VECTOR (0 to 5);
-           s_cnt : inout STD_LOGIC_VECTOR (3 downto 0)
-           );
-end Multiplexer;
-
-architecture Behavioral of Multiplexer is
-
-begin
-
-bin_cnt0 : entity work.cnt_up_down
-       generic map(
-            g_CNT_WIDTH => 3
-        )
-        port map(
-            clk     => clk,
-            reset   => rst_n,
-            en_i    => '1',
-            cnt_up_i => '0',
-            cnt_o => s_cnt
-        );
-
-p_mux : process(clk, rst_n)
-    begin
-        if rising_edge(clk) then
-            if (rst_n = '1') then
-               seg_o <= S_out0;
-               dig_o <= "1111110";
-            else
-                case s_cnt is
-                    when "110" =>
-                        seg_o <= H_out1;
-                        dig_o <= "0111111";
-                    when "101" =>
-                        seg_o <= H_out0;
-                        dig_o <= "1011111";
-                    when "100" =>
-                        seg_o <= M_out1;
-                        dig_o <= "1101111";
-                    when "011" =>
-                        seg_o <= M_out0;
-                        dig_o <= "1110111";
-                    when "010" =>
-                        seg_o <= S_out1;
-                        dig_o <= "1111011";
-                    when "001" =>
-                        seg_o <= S_out0;
-                        dig_o <= "1111101";    
-                    when others =>
-                        seg_o <= S_out0;
-                        dig_o <= "1111110";
-                end case;
-            end if;
-        end if;
-    end process p_mux;
-end Behavioral;

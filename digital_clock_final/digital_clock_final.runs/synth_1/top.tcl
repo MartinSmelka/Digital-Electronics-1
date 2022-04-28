@@ -71,7 +71,12 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 1
+set_param synth.incrementalSynthesisCache D:/Documents/227234/digital_clock_final/.Xil/Vivado-648-PC-630/incrSyn
 set_param xicom.use_bs_reader 1
+set_msg_config -id {HDL 9-1061} -limit 100000
+set_msg_config -id {HDL 9-1654} -limit 100000
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a50ticsg324-1L
 
@@ -88,7 +93,9 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
+  D:/Documents/227234/digital_clock_final/digital_clock_final.srcs/sources_1/new/clock_enable.vhd
   D:/Documents/227234/digital_clock_final/digital_clock_final.srcs/sources_1/new/cnt_up_down.vhd
+  D:/Documents/227234/digital_clock_final/digital_clock_final.srcs/sources_1/new/Multiplexer.vhd
   D:/Documents/227234/digital_clock_final/digital_clock_final.srcs/sources_1/new/digital_clock.vhd
   D:/Documents/227234/digital_clock_final/digital_clock_final.srcs/sources_1/new/top.vhd
 }

@@ -1,20 +1,7 @@
 Vivado Simulator 2020.1
 Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
-Running: C:/APPZ/Xilinx/Vivado/2020.1/bin/unwrapped/win64.o/xelab.exe -wto 7b8d9febb14a4ed2815e336a6578a51b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_digital_clock_behav xil_defaultlib.tb_digital_clock -log elaborate.log 
+Running: C:/APPZ/Xilinx/Vivado/2020.1/bin/unwrapped/win64.o/xelab.exe -wto 7b8d9febb14a4ed2815e336a6578a51b --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot top_behav xil_defaultlib.top -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
-Completed static elaboration
-Starting simulation data flow analysis
-Completed simulation data flow analysis
-Time Resolution for simulation is 1ps
-Compiling package std.standard
-Compiling package std.textio
-Compiling package ieee.std_logic_1164
-Compiling package ieee.numeric_std
-Compiling package ieee.std_logic_arith
-Compiling package ieee.std_logic_unsigned
-Compiling architecture behavioral of entity xil_defaultlib.clk_div [clk_div_default]
-Compiling architecture behavioral of entity xil_defaultlib.bin2hex [bin2hex_default]
-Compiling architecture behavioral of entity xil_defaultlib.digital_clock [digital_clock_default]
-Compiling architecture behavior of entity xil_defaultlib.tb_digital_clock
-Built simulation snapshot tb_digital_clock_behav
+ERROR: [VRFC 10-2335] case statement does not cover all choices. 'others' clause is needed [D:/Documents/227234/digital_clock_final/digital_clock_final.srcs/sources_1/new/Multiplexer.vhd:51]
+ERROR: [XSIM 43-3321] Static elaboration of top level VHDL design unit top in library work failed.

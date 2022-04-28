@@ -20,7 +20,7 @@ ARCHITECTURE behavior OF tb_digital_clock IS
          M_out1 : OUT  std_logic_vector(6 downto 0);
          M_out0 : OUT  std_logic_vector(6 downto 0);
          S_out1 : OUT  std_logic_vector(6 downto 0);
-         S_out0 : OUT  std_logic_vector(6 downto 0)         
+         S_out0 : OUT  std_logic_vector(6 downto 0)       
         );
     END COMPONENT;
    --Inputs
@@ -70,9 +70,9 @@ BEGIN
  rst_n <= '0';
  H_in1 <= "01";
  H_in0 <= x"0";
- M_in1 <= x"2";
+ M_in1 <= x"0";
  M_in0 <= x"0";
- S_in1 <= x"3";
+ S_in1 <= x"0";
  S_in0 <= x"0";
       wait for 100 ns; 
  rst_n <= '1';

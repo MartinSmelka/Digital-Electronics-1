@@ -1,0 +1,10 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../digital_clock_final.srcs/sources_1/new/clock_enable.vhd" \
+"../../../../digital_clock_final.srcs/sources_1/new/cnt_up_down.vhd" \
+"../../../../digital_clock_final.srcs/sources_1/new/Multiplexer.vhd" \
+"../../../../digital_clock_final.srcs/sources_1/new/digital_clock.vhd" \
+"../../../../digital_clock_final.srcs/sources_1/new/top.vhd" \
+
+# Do not sort compile order
+nosort
